@@ -2,30 +2,25 @@
   "manifest_version": 2,
   "name": "MZ Transfer Alarm",
   "version": "0.1",
-
   "description": "Alarm for player transfers on managerzone.com",
-  "homepage_url": "https://github.com/mdn/webextensions-examples/tree/master/beastify",
-
+  "homepage_url": "https://github.com/kaplanbora/mz-transfer-alarm",
   "icons": {
     "48": "dark-icons/logo-48.png",
     "96": "dark-icons/logo-96.png"
   },
-
-  "content_scripts": [
-    {
+  "content_scripts": [{
       "matches": ["https://www.managerzone.com/?p=shortlist"],
-      "js": ["mz.js"]
-    }
-  ],
-
+      "js": ["content_scripts/mz.js"]
+  }],
   "browser_action": {
+    "browser_style": true,
     "default_icon": "icons/logo-32.png",
-	"theme_icons": [{
-		"light": "light-icons/logo-32.png",
-		"dark": "dark-icons/logo-32.png"
-	}],
+	  "theme_icons": [{
+		  "light": "light-icons/logo-32.png",
+		  "dark": "dark-icons/logo-32.png",
+      "size": 32
+	  }],
     "default_title": "MZ Transfer Alarm",
     "default_popup": "popup/index.html"
   }
-
 }

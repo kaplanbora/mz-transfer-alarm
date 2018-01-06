@@ -1,12 +1,14 @@
 html, body {
     width: 400px;
+    padding: 0;
+    margin: 0;
 }
 
 #container {
     background-color: #dcdcdc;
 }
 
-.players {
+.player {
     display: flex;
     justify-content: space-between;
 }
