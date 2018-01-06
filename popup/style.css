@@ -1,0 +1,12 @@
+html, body {
+    width: 400px;
+}
+
+#container {
+    background-color: #dcdcdc;
+}
+
+.players {
+    display: flex;
+    justify-content: space-between;
+}
