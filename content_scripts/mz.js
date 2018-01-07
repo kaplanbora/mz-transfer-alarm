@@ -5,8 +5,7 @@ function init() {
   window.hasRun = true;
 }
 
-function load(message) {
-  console.log("load");
+function load() {
   let names = Array.from(document.getElementsByClassName("player_name"));
   let dates = Array.from(document.getElementsByClassName("bid_history_lite"));
 
@@ -26,7 +25,5 @@ function load(message) {
   browser.runtime.sendMessage(players);
 }
 
-console.log("mz.js");
 init();
-
 browser.runtime.onMessage.addListener(load);

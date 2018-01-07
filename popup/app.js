@@ -1,19 +1,34 @@
+var players;
+
 function getContent() {
-  console.log("getContent");
   browser.tabs.query({active: true, currentWindow: true})
     .then(send)
     .catch(error => console.log("Tab query error: " + error.data));
+}
+
+function setAlarm() {
+
 }
 
 function send(tabs) {
   browser.tabs.sendMessage(tabs[0].id, {command: "load"});
 }
 
-function populate(message) {
-  console.log("populate");
-  const container = document.getElementById("container");
+function createNotification(count) {
+  browser.notifications.create({
+    "type": "basic",
+    "iconUrl": browser.extension.getURL("dark-icons/logo-48.png"),
+    "title": "MZ Transfer Alarm",
+    "message": "Loaded " + count + " players from shortlist."
+  });
+}
 
-  for (let player of message) {
+function populate(message) {
+  players = message;
+  const container = document.getElementById("container");
+  container.innerHTML = "";
+
+  for (let player of players) {
     let pdiv = document.createElement("div");
     let pname = document.createElement("span");
     let pdate = document.createElement("span");
@@ -28,10 +43,11 @@ function populate(message) {
     pdiv.appendChild(pdate);
     container.appendChild(pdiv);
   }
+
+  createNotification(message.length);
 }
 
-document.getElementById("getButton").addEventListener("click", getContent);
+getContent();
+document.getElementById("setAlarm").addEventListener("click", setAlarm);
 browser.runtime.onMessage.addListener(populate);
-
-console.log("app.js");
 
