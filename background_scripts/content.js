@@ -15,9 +15,19 @@ function handleMessages(message) {
       setAlarms(message.players);
       break;
     case "clear-alarms":
-      browser.alarms.clearAll();
+      clearAlarms()
       break;
   }
+}
+
+function clearAlarms() {
+  browser.alarms.clearAll();
+  browser.notifications.create({
+    "type": "basic",
+    "iconUrl": browser.extension.getURL("light-icons/logo-48.png"),
+    "title": "MZ Transfer Alarm",
+    "message": browser.i18n.getMessage("clearAlarmsMessage")
+  });
 }
 
 function setAlarms(players) {

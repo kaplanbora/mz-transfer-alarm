@@ -4,6 +4,11 @@
     "description": "Extension description."
   },
 
+  "clearAlarmsMessage": {
+    "message": "Cleared all alarms.",
+    "description": "Message on a notification for cleaning alarms."
+  },
+
   "transferAlarmMessage": {
     "message": "$NAME$'s transfer will end in 1 minute.",
     "description": "Message on a notification for a transfer deadline.",
