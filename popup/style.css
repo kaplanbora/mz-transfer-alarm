@@ -1,14 +1,76 @@
 html, body {
     width: 400px;
+    height: 400px;
     padding: 0;
     margin: 0;
-}
-
-#container {
     background-color: #dcdcdc;
 }
 
+#container {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: 50px 50px 250px 50px;
+    grid-template-areas: 
+    "h h h h h h h h"
+    "n n n n d d d d"
+    "p p p p p p p p"
+    "s s s s c c c c";
+}
+
+h3, h1 {
+    margin: 0;
+}
+
+#playersHeader {
+    margin: 10px;
+    grid-area: n;
+    text-align: left;
+}
+
+#datesHeader {
+    margin: 10px;
+    text-align: right;
+    grid-area: d;
+}
+
+#players {
+    grid-area: p;
+    height: 100%;
+    overflow-y: auto;
+}
+
+#setAlarms {
+    grid-area: s;
+}
+
+#clearAlarms {
+    grid-area: c;
+}
+
+#title {
+    grid-area: h;
+    padding: 10px;
+    font-size: 24px;
+    text-align: center;
+}
+
+#title, button {
+    background-color: #383838;
+    color: #9fd72a;
+    width: 100%;
+}
+
+button {
+    border: 1px solid #9fd72a;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+}
+
 .player {
+    padding: 0 10px 0 10px;
     display: flex;
     justify-content: space-between;
+    height: 24px;
+    font-size: 14px;
 }

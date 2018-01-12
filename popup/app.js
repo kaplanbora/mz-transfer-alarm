@@ -4,6 +4,8 @@ const setAlarmsButton = document.querySelector("#setAlarms");
 const clearAlarmsButton = document.querySelector("#clearAlarms");
 setAlarmsButton.innerText = browser.i18n.getMessage("setAlarmsButton");
 clearAlarmsButton.innerText = browser.i18n.getMessage("clearAlarmsButton");
+document.querySelector("#playersHeader").innerText = browser.i18n.getMessage("playerName");
+document.querySelector("#datesHeader").innerText = browser.i18n.getMessage("transferDeadline");
 
 function clearAlarms(event) {
   browser.runtime.sendMessage({
@@ -36,8 +38,8 @@ function onMessage(message) {
 }
 
 function populate() {
-  const container = document.querySelector("#container");
-  container.innerHTML = "";
+  const playersDiv = document.querySelector("#players");
+  playersDiv.innerHTML = "";
 
   players.forEach(player => {
     let pdiv = document.createElement("div");
@@ -52,7 +54,7 @@ function populate() {
     pdiv.classList.add("player");
     pdiv.appendChild(pname);
     pdiv.appendChild(pdate);
-    container.appendChild(pdiv);
+    playersDiv.appendChild(pdiv);
   });
 }
 
