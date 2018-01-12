@@ -6,8 +6,8 @@
   "homepage_url": "https://github.com/kaplanbora/mz-transfer-alarm",
   "permissions": ["notifications", "alarms"],
   "icons": {
-    "48": "dark-icons/logo-48.png",
-    "96": "dark-icons/logo-96.png"
+    "48": "light-icons/logo-48.png",
+    "96": "light-icons/logo-96.png"
   },
   "content_scripts": [{
       "matches": ["https://www.managerzone.com/?p=shortlist"],

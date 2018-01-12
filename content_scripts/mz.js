@@ -40,7 +40,7 @@ function load() {
   
   browser.runtime.sendMessage({
     type: "persist-players",
-    data: players
+    players: players
   });
 }
 
