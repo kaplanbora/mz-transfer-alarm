@@ -1,0 +1,48 @@
+{
+  "extensionDescription": {
+    "message": "Alarm for player transfers on managerzone.com.",
+    "description": "Extension description."
+  },
+
+  "transferAlarmMessage": {
+    "message": "$NAME$'s transfer will end in 1 minute.",
+    "description": "Message on a notification for a transfer deadline.",
+    "placeholders": {
+      "name" : {
+        "content" : "$1",
+        "example" : "Player"
+      }
+    }
+  },
+
+  "createdAlarmMessage": {
+    "message": "Created alarms for $LEN$ players.",
+    "description": "Message on a notification for creating alarms.",
+    "placeholders": {
+      "len" : {
+        "content" : "$1",
+        "example" : "all"
+      }
+    }
+  },
+
+  "playerName": {
+    "message": "Player Name",
+    "description": "Label for player name."
+  },
+
+  "transferDeadline": {
+    "message": "Transfer Deadline",
+    "description": "Label for transfer deadline."
+  },
+
+  "setAlarmsButton": {
+    "message": "Set Alarm For All Players",
+    "description": "Set alarm button text."
+  },
+
+  "clearAlarmsButton": {
+    "message": "Clear All Alarms",
+    "description": "Clear alarm button text."
+  }
+}

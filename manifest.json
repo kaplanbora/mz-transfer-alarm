@@ -2,7 +2,8 @@
   "manifest_version": 2,
   "name": "MZ Transfer Alarm",
   "version": "0.2",
-  "description": "Alarm for player transfers on managerzone.com",
+  "description": "__MSG_extensionDescription__",
+  "default_locale": "en",
   "homepage_url": "https://github.com/kaplanbora/mz-transfer-alarm",
   "permissions": ["notifications", "alarms"],
   "icons": {
@@ -18,7 +19,7 @@
   },
   "browser_action": {
     "browser_style": true,
-    "default_icon": "icons/logo-32.png",
+    "default_icon": "light-icons/logo-32.png",
 	  "theme_icons": [{
 		  "light": "dark-icons/logo-32.png",
 		  "dark": "light-icons/logo-32.png",

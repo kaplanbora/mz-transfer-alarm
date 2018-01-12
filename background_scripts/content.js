@@ -38,7 +38,7 @@ function createNotification(name) {
     "type": "basic",
     "iconUrl": browser.extension.getURL("light-icons/logo-48.png"),
     "title": "MZ Transfer Alarm",
-    "message": `${name}'s transfer will end in 1 minute.`
+    "message": browser.i18n.getMessage("transferAlarmMessage", name)
   });
 }
 

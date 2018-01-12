@@ -1,5 +1,9 @@
 var players = [];
 var alarms = [];
+const setAlarmsButton = document.querySelector("#setAlarms");
+const clearAlarmsButton = document.querySelector("#clearAlarms");
+setAlarmsButton.innerText = browser.i18n.getMessage("setAlarmsButton");
+clearAlarmsButton.innerText = browser.i18n.getMessage("clearAlarmsButton");
 
 function clearAlarms(event) {
   browser.runtime.sendMessage({
@@ -17,7 +21,7 @@ function setAlarms(event) {
     "type": "basic",
     "iconUrl": browser.extension.getURL("light-icons/logo-48.png"),
     "title": "MZ Transfer Alarm",
-    "message": `Created alarms for ${players.length} players.`
+    "message": browser.i18n.getMessage("createdAlarmMessage", players.length)
   });
 }
 
@@ -57,5 +61,5 @@ browser.runtime.sendMessage({
 });
 
 browser.runtime.onMessage.addListener(onMessage);
-document.querySelector("#setAlarms").addEventListener("click", setAlarms);
-document.querySelector("#clearAlarms").addEventListener("click", clearAlarms);
+setAlarmsButton.addEventListener("click", setAlarms);
+clearAlarmsButton.addEventListener("click", clearAlarms);
