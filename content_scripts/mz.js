@@ -3,6 +3,7 @@ function init() {
     return;
   }
   window.hasRun = true;
+  load();
 }
 
 function load() {
@@ -22,8 +23,11 @@ function load() {
   }
 
   console.log(players);
-  browser.runtime.sendMessage(players);
+  
+  browser.runtime.sendMessage({
+    type: "persist-players",
+    data: players
+  });
 }
 
 init();
-browser.runtime.onMessage.addListener(load);

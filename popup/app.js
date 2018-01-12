@@ -1,17 +1,18 @@
-var players;
-
-function getContent() {
-  browser.tabs.query({active: true, currentWindow: true})
-    .then(send)
-    .catch(error => console.log("Tab query error: " + error.data));
-}
+var players = [];
+var alarms = [];
 
 function setAlarm() {
 
 }
 
-function send(tabs) {
-  browser.tabs.sendMessage(tabs[0].id, {command: "load"});
+function listener(message) {
+  switch (message.type) {
+    case "load-content":
+      players = message.players;
+      alarms = message.alarms;
+      populate();
+      break;
+  }
 }
 
 function createNotification(count) {
@@ -23,8 +24,7 @@ function createNotification(count) {
   });
 }
 
-function populate(message) {
-  players = message;
+function populate() {
   const container = document.getElementById("container");
   container.innerHTML = "";
 
@@ -47,7 +47,10 @@ function populate(message) {
   createNotification(message.length);
 }
 
-getContent();
-document.getElementById("setAlarm").addEventListener("click", setAlarm);
-browser.runtime.onMessage.addListener(populate);
+browser.runtime.sendMessage({
+  type: "send-content",
+});
 
+browser.runtime.onMessage.addListener(listener);
+
+document.getElementById("setAlarm").addEventListener("click", setAlarm);
