@@ -4,7 +4,7 @@
   "version": "0.2",
   "description": "Alarm for player transfers on managerzone.com",
   "homepage_url": "https://github.com/kaplanbora/mz-transfer-alarm",
-  "permissions": ["notifications"],
+  "permissions": ["notifications", "alarms"],
   "icons": {
     "48": "dark-icons/logo-48.png",
     "96": "dark-icons/logo-96.png"
@@ -20,8 +20,8 @@
     "browser_style": true,
     "default_icon": "icons/logo-32.png",
 	  "theme_icons": [{
-		  "light": "light-icons/logo-32.png",
-		  "dark": "dark-icons/logo-32.png",
+		  "light": "dark-icons/logo-32.png",
+		  "dark": "light-icons/logo-32.png",
       "size": 32
 	  }],
     "default_title": "MZ Transfer Alarm",

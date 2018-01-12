@@ -1,11 +1,14 @@
 var players = [];
 var alarms = [];
 
-function setAlarm() {
-
+function setAlarm(date) {
+  console.log(players[0].date.getTime());
+  browser.alarms.create(players[0].name, {
+    when: players[0].date.getTime()
+  });
 }
 
-function listener(message) {
+function onMessage(message) {
   switch (message.type) {
     case "load-content":
       players = message.players;
@@ -15,17 +18,23 @@ function listener(message) {
   }
 }
 
-function createNotification(count) {
+function onAlarm(alarm) {
+  createNotification(alarm.name);
+  const sound = new Audio(browser.extension.getURL("alarms/şak.ogg"));
+  sound.play();
+}
+
+function createNotification(name) {
   browser.notifications.create({
     "type": "basic",
-    "iconUrl": browser.extension.getURL("dark-icons/logo-48.png"),
+    "iconUrl": browser.extension.getURL("light-icons/logo-48.png"),
     "title": "MZ Transfer Alarm",
-    "message": "Loaded " + count + " players from shortlist."
+    "message": name
   });
 }
 
 function populate() {
-  const container = document.getElementById("container");
+  const container = document.querySelector("#container");
   container.innerHTML = "";
 
   for (let player of players) {
@@ -35,7 +44,7 @@ function populate() {
 
     pname.innerText = player.name;
     pname.classList.add("name");
-    pdate.innerText = player.date;
+    pdate.innerText = player.date.toLocaleString();
     pdate.classList.add("date");
 
     pdiv.classList.add("player");
@@ -43,14 +52,13 @@ function populate() {
     pdiv.appendChild(pdate);
     container.appendChild(pdiv);
   }
-
-  createNotification(message.length);
 }
 
 browser.runtime.sendMessage({
   type: "send-content",
 });
 
-browser.runtime.onMessage.addListener(listener);
+browser.runtime.onMessage.addListener(onMessage);
+browser.alarms.onAlarm.addListener(onAlarm);
 
-document.getElementById("setAlarm").addEventListener("click", setAlarm);
+document.querySelector("#setAlarm").addEventListener("click", setAlarm);
