@@ -47,7 +47,7 @@ function alarmTime(player) {
 function handleAlarms(alarm) {
   console.log("Alarm ringing for: " + alarm.name);
   createNotification(alarm.name);
-  const sound = new Audio(browser.extension.getURL("alarms/metro_1.wav"));
+  const sound = new Audio(browser.extension.getURL("alarms/mz-alarm.wav"));
   sound.play();
 }
 
