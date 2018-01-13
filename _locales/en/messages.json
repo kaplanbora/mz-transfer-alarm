@@ -49,5 +49,10 @@
   "clearAlarmsButton": {
     "message": "Clear All Alarms",
     "description": "Clear alarm button text."
+  },
+
+  "emptyPopupMessage": {
+    "message": "Go to \"Transfers > Shortlist\" to get players.",
+    "description": "Text to notify empty playerlist."
   }
 }

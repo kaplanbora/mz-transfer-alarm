@@ -37,9 +37,21 @@ function onMessage(message) {
   }
 }
 
+function clearPlayersArea(playersDiv) {
+  if (players.length > 0) {
+    playersDiv.innerHTML = "";
+  } else {
+    let link = document.createElement("a");
+    link.href = "https://www.managerzone.com/?p=shortlist";
+    link.classList.add("empty");
+    link.innerText = browser.i18n.getMessage("emptyPopupMessage");
+    playersDiv.appendChild(link);
+  }
+}
+
 function populate() {
   const playersDiv = document.querySelector("#players");
-  playersDiv.innerHTML = "";
+  clearPlayersArea(playersDiv);
 
   players.forEach(player => {
     let pdiv = document.createElement("div");

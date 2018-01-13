@@ -77,3 +77,12 @@ button {
     height: 24px;
     font-size: 14px;
 }
+
+.empty {
+    display: block;
+    font-size: 16px;
+    margin-top: 100px;
+    text-align: center;
+    width: 100%;
+    color: #383838;
+}

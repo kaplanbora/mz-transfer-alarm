@@ -22,7 +22,6 @@ function handleMessages(message) {
 
 function persistPlayers(message) {
   players = message.players;
-  console.dir(players);
   if (players) {
     browser.browserAction.setBadgeText({text: players.length.toString()});
     browser.browserAction.setBadgeBackgroundColor({color: "#224303"});

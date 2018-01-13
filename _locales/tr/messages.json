@@ -49,5 +49,10 @@
   "clearAlarmsButton": {
     "message": "Tüm Alarmları Temizle",
     "description": "Alarm temizleme butonu yazısı."
+  },
+
+  "emptyPopupMessage": {
+    "message": "Oyuncuları almak için \"Transferler > Oyuncu İzleme\" sayfasına git.",
+    "description": "Text to notify empty playerlist."
   }
 }
