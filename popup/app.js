@@ -21,7 +21,7 @@ function setAlarms(event) {
 
   browser.notifications.create({
     "type": "basic",
-    "iconUrl": browser.extension.getURL("light-icons/logo-48.png"),
+    "iconUrl": browser.extension.getURL("icons/logo-48.png"),
     "title": "MZ Transfer Alarm",
     "message": browser.i18n.getMessage("createdAlarmMessage", players.length)
   });

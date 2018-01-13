@@ -7,8 +7,8 @@
   "homepage_url": "https://github.com/kaplanbora/mz-transfer-alarm",
   "permissions": ["notifications", "alarms"],
   "icons": {
-    "48": "light-icons/logo-48.png",
-    "96": "light-icons/logo-96.png"
+    "48": "icons/logo-48.png",
+    "96": "icons/logo-96.png"
   },
   "content_scripts": [{
       "matches": ["https://www.managerzone.com/?p=shortlist"],
@@ -19,10 +19,10 @@
   },
   "browser_action": {
     "browser_style": true,
-    "default_icon": "light-icons/logo-32.png",
+    "default_icon": "icons/logo-32.png",
 	  "theme_icons": [{
-		  "light": "dark-icons/logo-32.png",
-		  "dark": "light-icons/logo-32.png",
+		  "light": "icons/logo-32.png",
+		  "dark": "icons/logo-32.png",
       "size": 32
 	  }],
     "default_title": "MZ Transfer Alarm",
