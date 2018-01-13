@@ -3,13 +3,13 @@ var players = [];
 function handleMessages(message) {
   switch (message.type) {
     case "persist-players":
-      players = message.players;
+      persistPlayers(message);
       break;
     case "send-content":
       browser.runtime.sendMessage({
         type: "load-content",
         players: players,
-        });
+      });
       break;
     case "create-alarms":
       setAlarms(message.players);
@@ -17,6 +17,15 @@ function handleMessages(message) {
     case "clear-alarms":
       clearAlarms();
       break;
+  }
+}
+
+function persistPlayers(message) {
+  players = message.players;
+  console.dir(players);
+  if (players) {
+    browser.browserAction.setBadgeText({text: players.length.toString()});
+    browser.browserAction.setBadgeBackgroundColor({color: "#224303"});
   }
 }
 
@@ -32,7 +41,7 @@ function clearAlarms() {
 
 function setAlarms(players) {
   players.forEach(player => browser.alarms.create(
-      player.name, {when: alarmTime(player)}
+    player.name, {when: alarmTime(player)}
     )
   );
 }
@@ -40,12 +49,10 @@ function setAlarms(players) {
 function alarmTime(player) {
   let date = player.date;
   date.setMinutes(date.getMinutes() - 1);
-  console.log(`Setting alarm for ${player.name} at ${date.toLocaleString()}`);
   return date.getTime();
 }
 
 function handleAlarms(alarm) {
-  console.log("Alarm ringing for: " + alarm.name);
   createNotification(alarm.name);
   const sound = new Audio(browser.extension.getURL("alarms/mz-alarm.wav"));
   sound.play();

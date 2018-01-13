@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "MZ Transfer Alarm",
-  "version": "0.2",
+  "version": "1.0.0",
   "description": "__MSG_extensionDescription__",
   "default_locale": "en",
   "homepage_url": "https://github.com/kaplanbora/mz-transfer-alarm",
@@ -21,7 +21,7 @@
     "browser_style": true,
     "default_icon": "icons/logo-32.png",
 	  "theme_icons": [{
-		  "light": "icons/logo-32.png",
+		  "light": "icons/dlogo-32.png",
 		  "dark": "icons/logo-32.png",
       "size": 32
 	  }],

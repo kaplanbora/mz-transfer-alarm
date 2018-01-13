@@ -7,7 +7,7 @@ function init() {
 }
 
 function toDate(textDate) {
-  // textDate example: "13-01-2018 00:31";
+  // textDate example: "13-01-2018 00:31"
   return new Date(
     textDate.slice(6, 10),
     textDate.slice(3, 5) - 1,
@@ -36,8 +36,6 @@ function load() {
 
   players.sort((a,b) => a.date - b.date);
 
-  console.log(players);
-  
   browser.runtime.sendMessage({
     type: "persist-players",
     players: players
