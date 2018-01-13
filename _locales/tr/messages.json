@@ -1,0 +1,53 @@
+{
+  "extensionDescription": {
+    "message": "Managerzone sitesindeki izlenen transfer oyuncuları için bir alarm.",
+    "description": "Eklenti tanıtımı."
+  },
+
+  "clearAlarmsMessage": {
+    "message": "Tüm alarmlar temizlendi.",
+    "description": "Tüm alarmların temizlendiğini belirten bildirim mesajı."
+  },
+
+  "transferAlarmMessage": {
+    "message": "$NAME$ adlı oyuncunun transferinin bitişine son 1 dakika.",
+    "description": "Oyuncunun süresinin bittiğini bildiren mesaj.",
+    "placeholders": {
+      "name" : {
+        "content" : "$1",
+        "example" : "Oyuncu"
+      }
+    }
+  },
+
+  "createdAlarmMessage": {
+    "message": "$LEN$ oyuncu için alarm kuruldu.",
+    "description": "Alarmın kurulduğunu bildiren mesaj.",
+    "placeholders": {
+      "len" : {
+        "content" : "$1",
+        "example" : "Her"
+      }
+    }
+  },
+
+  "playerName": {
+    "message": "Oyuncu Adı",
+    "description": "Oyuncu adı etiketi."
+  },
+
+  "transferDeadline": {
+    "message": "Transfer Bitişi",
+    "description": "Transfer bitişi etiketi."
+  },
+
+  "setAlarmsButton": {
+    "message": "Tümü İçin Alarm Kur",
+    "description": "Alarm kurma butonu yazısı."
+  },
+
+  "clearAlarmsButton": {
+    "message": "Tüm Alarmları Temizle",
+    "description": "Alarm temizleme butonu yazısı."
+  }
+}
