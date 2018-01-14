@@ -23,23 +23,34 @@ html, body {
 
 h1, h2 {
     margin: 0;
-    text-align: center;
     font-weight: lighter;
 }
 
 h1 {
     color: #9fd72a;
     font-size: 24px;
+    text-align: center;
 }
 
 h2 {
     font-size: 18px;
+    display: inline;
+    margin-left: 10px;
 }
 
 .header {
     width: 100%;
     height: 50px;
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header > span {
+    margin-right: 10px;
+    font-size: 16px;
+    color: #71991e;
+    text-decoration: underline;
 }
 
 .players {
@@ -66,8 +77,11 @@ h2 {
 }
 
 .info {
-    font-size: 16px;
+    font-size: 14px;
     margin-left: -120px;
+}
+.info > span {
+    display: block;
 }
 
 .tick, .alarm {
