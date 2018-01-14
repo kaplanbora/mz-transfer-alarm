@@ -107,3 +107,11 @@ h2 {
 #select-all-label, .actions > div, input {
     cursor: pointer;
 }
+
+.empty {
+    color: #71991e;
+    font-size: 14px;
+    text-align: center;
+    display: block;
+    width: 100%;
+}

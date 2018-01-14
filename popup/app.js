@@ -51,10 +51,13 @@ function onMessage(message) {
 
 function showEmptyMessage(playersDiv) {
   let link = document.createElement("a");
+  const pdiv = document.createElement("div");
+  pdiv.classList.add("player");
+  pdiv.appendChild(link);
   link.href = "https://www.managerzone.com/?p=shortlist";
   link.classList.add("empty");
   link.innerText = browser.i18n.getMessage("emptyPopupMessage");
-  playersDiv.appendChild(link);
+  playersDiv.appendChild(pdiv);
 }
 
 function createPlayerDiv(player) {
@@ -70,7 +73,6 @@ function createPlayerDiv(player) {
   const checkbox = document.createElement("input");
 
   checkbox.type = "checkbox";
-  checkbox.checked = player.alarm;
   tick.classList.add("tick");
   tick.appendChild(checkbox);
 
