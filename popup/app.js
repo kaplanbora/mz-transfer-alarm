@@ -1,11 +1,18 @@
 var players = [];
 var alarms = [];
-const setAlarmsButton = document.querySelector("#setAlarms");
-const clearAlarmsButton = document.querySelector("#clearAlarms");
-setAlarmsButton.innerText = browser.i18n.getMessage("setAlarmsButton");
-clearAlarmsButton.innerText = browser.i18n.getMessage("clearAlarmsButton");
-document.querySelector("#playersHeader").innerText = browser.i18n.getMessage("playerName");
-document.querySelector("#datesHeader").innerText = browser.i18n.getMessage("transferDeadline");
+
+document.querySelector("#set-alarms-label").innerText = browser.i18n.getMessage("setAlarmsLabel");
+document.querySelector("#clear-alarms-label").innerText = browser.i18n.getMessage("clearAlarmsLabel");
+document.querySelector("#remove-players-label").innerText = browser.i18n.getMessage("removePlayersLabel");
+document.querySelector("#players-label").innerText = browser.i18n.getMessage("players");
+document.querySelector("#select-all-label").innerText = browser.i18n.getMessage("selectAll");
+document.querySelector("#set-alarms-button").addEventListener("click", setAlarms);
+document.querySelector("#clear-alarms-button").addEventListener("click", clearAlarms);
+document.querySelector("#remove-players-button").addEventListener("click", removePlayers);
+
+function removePlayers(event) {
+
+}
 
 function clearAlarms(event) {
   browser.runtime.sendMessage({

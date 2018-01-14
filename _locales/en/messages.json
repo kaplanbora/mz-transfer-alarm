@@ -3,54 +3,88 @@
     "message": "Create alarms for transfer players on shortlist at managerzone.com.",
     "description": "Extension description."
   },
-
   "clearAlarmsMessage": {
     "message": "Cleared all alarms.",
     "description": "Message on a notification for cleaning alarms."
   },
-
   "transferAlarmMessage": {
     "message": "$NAME$'s transfer will end in 1 minute.",
     "description": "Message on a notification for a transfer deadline.",
     "placeholders": {
-      "name" : {
-        "content" : "$1",
-        "example" : "Player"
+      "name": {
+        "content": "$1",
+        "example": "Player"
       }
     }
   },
-
   "createdAlarmMessage": {
     "message": "Created alarms for $LEN$ players.",
     "description": "Message on a notification for creating alarms.",
     "placeholders": {
-      "len" : {
-        "content" : "$1",
-        "example" : "all"
+      "len": {
+        "content": "$1",
+        "example": "all"
       }
     }
   },
-
+  "todayDate": {
+    "message": "Today, $DATE$",
+    "description": "Date text for transfer deadline.",
+    "placeholders": {
+      "date": {
+        "content": "$1",
+        "example": "13:37"
+      }
+    }
+  },
+  "oneDayDate": {
+    "message": "One day later, $DATE$",
+    "description": "Date text for transfer deadline.",
+    "placeholders": {
+      "date": {
+        "content": "$1",
+        "example": "13:37"
+      }
+    }
+  },
+  "twoDayDate": {
+    "message": "Two days later, $DATE$",
+    "description": "Date text for transfer deadline.",
+    "placeholders": {
+      "date": {
+        "content": "$1",
+        "example": "13:37"
+      }
+    }
+  },
   "playerName": {
     "message": "Player Name",
     "description": "Label for player name."
   },
-
+  "players": {
+    "message": "Players",
+    "descripton": "Players label."
+  },
+  "selectAll": {
+    "message": "Select All",
+    "descripton": "Select all label."
+  },
   "transferDeadline": {
     "message": "Transfer Deadline",
     "description": "Label for transfer deadline."
   },
-
-  "setAlarmsButton": {
-    "message": "Set Alarm For All Players",
+  "setAlarmsLabel": {
+    "message": "Set Alarms",
     "description": "Set alarm button text."
   },
-
-  "clearAlarmsButton": {
-    "message": "Clear All Alarms",
+  "clearAlarmsLabel": {
+    "message": "Clear Alarms",
     "description": "Clear alarm button text."
   },
-
+  "removePlayersLabel": {
+    "message": "Remove Players",
+    "description": "Remove players button text."
+  },
   "emptyPopupMessage": {
     "message": "Go to \"Transfers > Shortlist\" to get players.",
     "description": "Text to notify empty playerlist."

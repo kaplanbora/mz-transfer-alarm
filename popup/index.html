@@ -1,18 +1,52 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <link rel="stylesheet" href="style.css" />
-    </head>
-    <body>
-        <div id="container">
-            <h1 id="title">MZ Transfer Alarm</h1>
-            <h3 id="playersHeader"></h3>
-            <h3 id="datesHeader"></h3>
-            <div id="players"></div>
-            <button id="setAlarms"></button>
-            <button id="clearAlarms"></button>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MZ Transfer Alarm</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <div class="title center">
+        <h1>MZ Transfer Alarm</h1>
+    </div>
+    <div class="header">
+        <h2 id="players-label"></h2>
+        <span id="select-all-label"></span>
+    </div>
+    <div class="players">
+        <div class="player">
+            <div class="tick"><input type="checkbox"></div>
+            <div class="info">
+                <span class="name">Bora Kaplan</span>
+                <span class="deadline">Today, 12:52PM</span>
+            </div>
+            <div class="alarm"><img src="font-awesome_4-7-0_bell-o_24_0_e8e8e8_none.png" alt="Unset Alarm"></div>
         </div>
-    <script src="app.js"></script>
-    </body>
+        <div class="player">
+            <div class="tick"><input type="checkbox"></div>
+            <div class="info">
+                <span class="name">Bora Kaplan</span>
+                <span class="deadline">Today, 12:52PM</span>
+            </div>
+            <div class="alarm"><img src="font-awesome_4-7-0_bell-o_24_0_282828_none.png" alt="Set Alarm"></div>
+        </div>
+    </div>
+    <div class="actions">
+        <div id="set-alarms-button" class="action">
+            <div class="center"><img src="font-awesome_4-7-0_bell_28_0_9fd72a_none.png" alt="Bell Icon"></div>
+            <div id="set-alarms-label"></div>
+        </div>
+        <div id="clear-alarms-button" class="action">
+            <div class="center"><img src="font-awesome_4-7-0_bell-slash_28_0_9fd72a_none.png" alt="Slashed Bell Icon"></div>
+            <div id="clear-alarms-label"></div>
+        </div>
+        <div id="remove-players-button" class="action">
+            <div class="center"><img src="font-awesome_4-7-0_trash_28_0_9fd72a_none.png" alt="Trash Icon"></div>
+            <div id="remove-players-label"></div>
+        </div>
+    </div>
+</div>
+<script src="app.js"></script>
+</body>
 </html>
