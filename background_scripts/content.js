@@ -21,11 +21,20 @@ function handleMessages(message) {
 }
 
 function persistPlayers(message) {
-  players = message.players;
-  if (players) {
-    browser.browserAction.setBadgeText({text: players.length.toString()});
-    browser.browserAction.setBadgeBackgroundColor({color: "#224303"});
+  if (players.length === 0) {
+    players = message.players;
+  } else {
+    players = players.filter(player =>
+      message.players.some(mplayer => mplayer.name === player.name)
+    );
+    /**
+     * TODO:
+     * - If player already exists here update its date.
+     * - If there is an alarm for old date remove that and create a new alarm.
+     */
   }
+  browser.browserAction.setBadgeText({text: players.length.toString()});
+  browser.browserAction.setBadgeBackgroundColor({color: "#224303"});
 }
 
 function clearAlarms() {

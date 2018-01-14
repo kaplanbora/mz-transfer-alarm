@@ -103,3 +103,7 @@ h2 {
 .action > div {
     font-size: 14px;
 }
+
+#select-all-label, .actions > div, input {
+    cursor: pointer;
+}

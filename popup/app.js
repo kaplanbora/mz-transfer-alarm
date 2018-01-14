@@ -9,6 +9,11 @@ document.querySelector("#select-all-label").innerText = browser.i18n.getMessage(
 document.querySelector("#set-alarms-button").addEventListener("click", setAlarms);
 document.querySelector("#clear-alarms-button").addEventListener("click", clearAlarms);
 document.querySelector("#remove-players-button").addEventListener("click", removePlayers);
+document.querySelector("#select-all-label").addEventListener("click", selectAll);
+
+function selectAll() {
+
+}
 
 function removePlayers(event) {
 
@@ -44,35 +49,61 @@ function onMessage(message) {
   }
 }
 
-function clearPlayersArea(playersDiv) {
-  if (players.length > 0) {
-    playersDiv.innerHTML = "";
-  } else {
-    let link = document.createElement("a");
-    link.href = "https://www.managerzone.com/?p=shortlist";
-    link.classList.add("empty");
-    link.innerText = browser.i18n.getMessage("emptyPopupMessage");
-    playersDiv.appendChild(link);
-  }
+function showEmptyMessage(playersDiv) {
+  let link = document.createElement("a");
+  link.href = "https://www.managerzone.com/?p=shortlist";
+  link.classList.add("empty");
+  link.innerText = browser.i18n.getMessage("emptyPopupMessage");
+  playersDiv.appendChild(link);
+}
+
+function createPlayerDiv(player) {
+  const noAlarmIcon = "font-awesome_4-7-0_bell-o_24_0_e8e8e8_none.png";
+  const alarmIcon = "font-awesome_4-7-0_bell-o_24_0_282828_none.png";
+  const pdiv = document.createElement("div");
+  const tick = document.createElement("div");
+  const info = document.createElement("div");
+  const alarm = document.createElement("div");
+  const pname = document.createElement("span");
+  const pdeadline = document.createElement("span");
+  const icon = document.createElement("img");
+  const checkbox = document.createElement("input");
+
+  checkbox.type = "checkbox";
+  checkbox.checked = player.alarm;
+  tick.classList.add("tick");
+  tick.appendChild(checkbox);
+
+  pname.innerText = player.name;
+  pname.classList.add("name");
+  pdeadline.innerText = player.date.toLocaleString(); // customize this
+  pdeadline.classList.add("date");
+  info.classList.add("info");
+  info.appendChild(pname);
+  info.appendChild(pdeadline);
+
+  icon.src = player.alarm ? alarmIcon : noAlarmIcon;
+  icon.alt = "Alarm Icon";
+  alarm.classList.add("alarm");
+  alarm.appendChild(icon);
+
+  pdiv.classList.add("player");
+  pdiv.appendChild(tick);
+  pdiv.appendChild(info);
+  pdiv.appendChild(alarm);
+  return pdiv;
 }
 
 function populate() {
-  const playersDiv = document.querySelector("#players");
-  clearPlayersArea(playersDiv);
+  const playersDiv = document.querySelector(".players");
+  if (players.length === 0) {
+    showEmptyMessage(playersDiv);
+    return;
+  }
+  playersDiv.innerHTML = "";
 
   players.forEach(player => {
-    let pdiv = document.createElement("div");
-    let pname = document.createElement("span");
-    let pdate = document.createElement("span");
-
-    pname.innerText = player.name;
-    pname.classList.add("name");
-    pdate.innerText = player.date.toLocaleString();
-    pdate.classList.add("date");
-
-    pdiv.classList.add("player");
-    pdiv.appendChild(pname);
-    pdiv.appendChild(pdate);
+    let pdiv = createPlayerDiv(player);
     playersDiv.appendChild(pdiv);
   });
 }

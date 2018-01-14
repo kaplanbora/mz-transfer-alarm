@@ -30,7 +30,8 @@ function load() {
   for (let i = 0; i < names.length; i++) {
     players.push({
       name: names[i],
-      date: toDate(dates[i])
+      date: toDate(dates[i]),
+      alarm: false
     });
   }
 
