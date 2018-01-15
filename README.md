@@ -1,9 +1,7 @@
 # MZ Transfer Alarm
 Create alarms for transfer players on shortlist at managerzone.com. Currenly only works on [Firefox 57][link]. Chrome version will be added soon.
 
-<center>
 ![Interface example][screenshot]
-</center>
 
 ## How to Use
 - Add players on transfer page to shortlist.
