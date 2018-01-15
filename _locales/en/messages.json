@@ -13,36 +13,6 @@
       }
     }
   },
-  "todayDate": {
-    "message": "Today, $DATE$",
-    "description": "Date text for transfer deadline.",
-    "placeholders": {
-      "date": {
-        "content": "$1",
-        "example": "13:37"
-      }
-    }
-  },
-  "oneDayDate": {
-    "message": "One day later, $DATE$",
-    "description": "Date text for transfer deadline.",
-    "placeholders": {
-      "date": {
-        "content": "$1",
-        "example": "13:37"
-      }
-    }
-  },
-  "twoDayDate": {
-    "message": "Two days later, $DATE$",
-    "description": "Date text for transfer deadline.",
-    "placeholders": {
-      "date": {
-        "content": "$1",
-        "example": "13:37"
-      }
-    }
-  },
   "playerName": {
     "message": "Player Name",
     "description": "Label for player name."

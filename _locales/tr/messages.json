@@ -3,12 +3,6 @@
     "message": "Managerzone transfer oyuncuları için alarm oluştur.",
     "description": "Eklenti tanıtımı."
   },
-
-  "clearAlarmsMessage": {
-    "message": "Tüm alarmlar temizlendi.",
-    "description": "Tüm alarmların temizlendiğini belirten bildirim mesajı."
-  },
-
   "transferAlarmMessage": {
     "message": "$NAME$ adlı oyuncunun transferinin bitişine son 1 dakika.",
     "description": "Oyuncunun süresinin bittiğini bildiren mesaj.",
@@ -19,40 +13,52 @@
       }
     }
   },
-
-  "createdAlarmMessage": {
-    "message": "$LEN$ oyuncu için alarm kuruldu.",
-    "description": "Alarmın kurulduğunu bildiren mesaj.",
-    "placeholders": {
-      "len" : {
-        "content" : "$1",
-        "example" : "Her"
-      }
-    }
-  },
-
   "playerName": {
     "message": "Oyuncu Adı",
     "description": "Oyuncu adı etiketi."
   },
-
+  "players": {
+    "message": "Oyuncular",
+    "descripton": "Oyuncular yazısı."
+  },
+  "selectAll": {
+    "message": "Tümünü seç",
+    "descripton": "Tümünü seç yazısı."
+  },
   "transferDeadline": {
     "message": "Transfer Bitişi",
     "description": "Transfer bitişi etiketi."
   },
-
-  "setAlarmsButton": {
-    "message": "Tümü İçin Alarm Kur",
-    "description": "Alarm kurma butonu yazısı."
+  "setAlarmsLabel": {
+    "message": "Alarm Kur",
+    "description": "Alarm kur butonu yazısı."
   },
-
-  "clearAlarmsButton": {
-    "message": "Tüm Alarmları Temizle",
-    "description": "Alarm temizleme butonu yazısı."
+  "clearAlarmsLabel": {
+    "message": "Alarm Sil",
+    "description": "Alarm sil butonu yazısı."
   },
-
+  "removePlayersLabel": {
+    "message": "Oyuncu Kaldır",
+    "description": "Oyuncu kaldır butonu yazısı."
+  },
   "emptyPopupMessage": {
-    "message": "Oyuncuları almak için \"Transferler > Oyuncu İzleme\" sayfasına git.",
-    "description": "Text to notify empty playerlist."
+    "message": "Oyuncuları almak için \"Transferler > Takip Listesi\" sayfasına git.",
+    "description": "Boş liste bildirim yazısı."
+  },
+  "today": {
+    "message": "Bugün",
+    "description": "Transfer bitiş günü."
+  },
+  "oneDayLater": {
+    "message": "1 Gün Sonra",
+    "description": "Transfer bitiş günü."
+  },
+  "twoDaysLater": {
+    "message": "2 Gün Sonra",
+    "description": "Transfer bitiş günü."
+  },
+  "threeDaysLater": {
+    "message": "3 Gün Sonra",
+    "description": "Transfer bitiş günü."
   }
 }
