@@ -21,9 +21,11 @@ function toDate(textDate) {
 function load() {
   let names = Array.from(document.querySelectorAll(".player_name"));
   let dates = Array.from(document.querySelectorAll(".bid_history_lite"));
+  console.dir(dates);
 
   names = names.map(name => name.innerText);
   dates = dates.map(date => date.children[1].children[1].innerText);
+  console.dir(dates);
 
   let players = [];
 
@@ -31,14 +33,16 @@ function load() {
     players.push({
       name: names[i],
       date: toDate(dates[i]),
-      alarm: false
+      alarm: false,
+      checked: false
     });
   }
 
   players.sort((a,b) => a.date - b.date);
-
+  
+  console.dir(players);
   browser.runtime.sendMessage({
-    type: "persist-players",
+    type: "load-players",
     players: players
   });
 }

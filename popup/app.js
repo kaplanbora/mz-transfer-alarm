@@ -11,31 +11,58 @@ document.querySelector("#clear-alarms-button").addEventListener("click", clearAl
 document.querySelector("#remove-players-button").addEventListener("click", removePlayers);
 document.querySelector("#select-all-label").addEventListener("click", selectAll);
 
-function selectAll() {
+function selectPlayer(event) {
+  let player = players.find(p => event.target.id === p.name);
+  player.checked = !player.checked;
+  event.checked = !event.checked;
+}
 
+function selectAll(event) {
+  players.forEach(player => player.checked = !player.checked);
+  Array.from(document.querySelectorAll(".select"))
+    .forEach(checkbox => checkbox.checked = !checkbox.checked);
 }
 
 function removePlayers(event) {
-
+  players = players.filter(player => !player.checked);
+  populate();
+  browser.runtime.sendMessage({
+    type: "persist-players",
+    players: players
+  });
 }
 
 function clearAlarms(event) {
+  let checkedPlayers = players.filter(player => player.checked);
+  checkedPlayers.forEach(player => {
+    player.alarm = false;
+    player.checked = false;
+  });
+  populate();
   browser.runtime.sendMessage({
     type: "clear-alarms",
+    players: checkedPlayers 
+  });
+  browser.runtime.sendMessage({
+    type: "persist-players",
+    players: players
   });
 }
 
 function setAlarms(event) {
-  browser.runtime.sendMessage({
-    type: "create-alarms",
-    players: players
+  let checkedPlayers = players.filter(player => player.checked);
+  checkedPlayers.forEach(player => {
+    player.alarm = true;
+    player.checked = false;
   });
-
-  browser.notifications.create({
-    "type": "basic",
-    "iconUrl": browser.extension.getURL("icons/logo-48.png"),
-    "title": "MZ Transfer Alarm",
-    "message": browser.i18n.getMessage("createdAlarmMessage", players.length)
+  populate();
+  browser.runtime.sendMessage({
+    type: "set-alarms",
+    players: checkedPlayers
+  });
+  browser.runtime.sendMessage({
+    type: "persist-players",
+    players: players
   });
 }
 
@@ -72,7 +99,10 @@ function createPlayerDiv(player) {
   const icon = document.createElement("img");
   const checkbox = document.createElement("input");
 
+  checkbox.addEventListener("click", selectPlayer);
+  checkbox.id = player.name;
   checkbox.type = "checkbox";
+  checkbox.classList.add("select");
   tick.classList.add("tick");
   tick.appendChild(checkbox);
 
@@ -115,5 +145,3 @@ browser.runtime.sendMessage({
 });
 
 browser.runtime.onMessage.addListener(onMessage);
-setAlarmsButton.addEventListener("click", setAlarms);
-clearAlarmsButton.addEventListener("click", clearAlarms);

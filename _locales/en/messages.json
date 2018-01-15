@@ -3,10 +3,6 @@
     "message": "Create alarms for transfer players on shortlist at managerzone.com.",
     "description": "Extension description."
   },
-  "clearAlarmsMessage": {
-    "message": "Cleared all alarms.",
-    "description": "Message on a notification for cleaning alarms."
-  },
   "transferAlarmMessage": {
     "message": "$NAME$'s transfer will end in 1 minute.",
     "description": "Message on a notification for a transfer deadline.",
@@ -14,16 +10,6 @@
       "name": {
         "content": "$1",
         "example": "Player"
-      }
-    }
-  },
-  "createdAlarmMessage": {
-    "message": "Created alarms for $LEN$ players.",
-    "description": "Message on a notification for creating alarms.",
-    "placeholders": {
-      "len": {
-        "content": "$1",
-        "example": "all"
       }
     }
   },
