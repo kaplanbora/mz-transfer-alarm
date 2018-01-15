@@ -30,12 +30,14 @@ function load() {
   let players = [];
 
   for (let i = 0; i < names.length; i++) {
-    players.push({
-      name: names[i],
-      date: toDate(dates[i]),
-      alarm: false,
-      checked: false
-    });
+    if (toDate(dates[i]).getTime() >= Date.now()) {
+      players.push({
+        name: names[i],
+        date: toDate(dates[i]),
+        alarm: false,
+        checked: false
+      });
+    }
   }
 
   players.sort((a,b) => a.date - b.date);

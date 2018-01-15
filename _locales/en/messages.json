@@ -74,5 +74,21 @@
   "emptyPopupMessage": {
     "message": "Go to \"Transfers > Shortlist\" to get players.",
     "description": "Text to notify empty playerlist."
+  },
+  "today": {
+    "message": "Today",
+    "description": "Date offset to now."
+  },
+  "oneDayLater": {
+    "message": "1 Day Later",
+    "description": "Date offset to now."
+  },
+  "twoDaysLater": {
+    "message": "2 Days Later",
+    "description": "Date offset to now."
+  },
+  "threeDaysLater": {
+    "message": "3 Days Later",
+    "description": "Date offset to now."
   }
 }
