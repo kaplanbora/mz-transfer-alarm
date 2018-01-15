@@ -32,7 +32,7 @@ function load() {
       if (deadline.getTime() >= Date.now()){
         players.push({
           name: nameElement.innerText,
-          date: deadline,
+          date: deadline.getTime(),
           alarm: false,
           checked: false
         });
@@ -42,7 +42,7 @@ function load() {
 
   players.sort((a,b) => a.date - b.date);
   
-  browser.runtime.sendMessage({
+  chrome.runtime.sendMessage({
     type: "load-players",
     players: players
   });

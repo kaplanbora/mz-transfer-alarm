@@ -1,6 +1,8 @@
 var players = [];
 
 function handleMessages(message) {
+  console.log("Incoming message: " + message.type);
+  console.log(message.players);
   switch (message.type) {
     case "persist-players":
       persistPlayers(message);
@@ -9,18 +11,27 @@ function handleMessages(message) {
       loadPlayers(message);
       break;
     case "send-content":
-      browser.runtime.sendMessage({
+      chrome.runtime.sendMessage({
         type: "load-content",
         players: players,
       });
       break;
+    case "remove-players":
+      removePlayers(message);
+      break;
     case "set-alarms":
-      setAlarms(message.players);
+      setAlarms(message);
       break;
     case "clear-alarms":
-      clearAlarms(message.players);
+      clearAlarms(message);
       break;
   }
+}
+
+function removePlayers(message) {
+  message.players.filter(player => player.checked)
+    .forEach(player => chrome.alarms.clear(player.name));
+  players = message.players.filter(player => !player.checked);
 }
 
 function getPlayersAlarm(name) {
@@ -33,14 +44,14 @@ function getPlayersAlarm(name) {
 }
 
 function persistPlayers(message) {
-    /**
-     * TODO:
-     * - If player already exists here update its date.
-     * - If there is an alarm for old date remove that and create a new alarm.
-     */
+  /**
+   * TODO:
+   * - If player already exists here update its date.
+   * - If there is an alarm for old date remove that and create a new alarm.
+   */
   players = message.players;
-  browser.browserAction.setBadgeText({text: players.length.toString()});
-  browser.browserAction.setBadgeBackgroundColor({color: "#224303"});
+  chrome.browserAction.setBadgeText({text: players.length.toString()});
+  chrome.browserAction.setBadgeBackgroundColor({color: "#224303"});
 }
 
 function loadPlayers(message) {
@@ -49,62 +60,63 @@ function loadPlayers(message) {
    * - If player already exists here update its date.
    * - If there is an alarm for old date remove that and create a new alarm.
    */
-message.players.forEach(p => p.alarm = getPlayersAlarm(p.name));
-players = message.players;
-browser.browserAction.setBadgeText({text: players.length.toString()});
-browser.browserAction.setBadgeBackgroundColor({color: "#224303"});
+  message.players.forEach(p => p.alarm = getPlayersAlarm(p.name));
+  players = message.players;
+  chrome.browserAction.setBadgeText({text: players.length.toString()});
+  chrome.browserAction.setBadgeBackgroundColor({color: "#224303"});
 }
 
-function clearAlarms(players) {
-  players.forEach(player => browser.alarms.clear(player.name));
+function clearAlarms(message) {
+  players = message.players;
+  players.filter(player => !player.alarm)
+    .forEach(player => chrome.alarms.clear(player.name));
 }
 
 function fixDateCollisions(players) {
   for (let i = 0; i < players.length; i++) {
-    let date1 = players[i].date;
-    let addedSeconds = 1;
+    let addedMillis = 100;
     for (let j = 0; j < players.length; j++) {
-      let date2 = players[j].date;
       if (players[i].name === players[j].name) {
         continue;
-      } else if (date1.getHours() === date2.getHours() && date1.getMinutes() === date2.getMinutes()) {
-        date2.setSeconds(date2.getSeconds() + addedSeconds);
-        addedSeconds += 1;
+      } else if (players[i].date === players[j].date) {
+        players[j].date = players[j].date + addedMillis;
+        addedMillis += 600;
       }
     }
   }
 }
 
-function setAlarms(players) {
-  fixDateCollisions(players);
-  players.forEach(player => browser.alarms.create(
+function setAlarms(message) {
+  players = message.players;
+  let playersDated = players.filter(p => p.alarm);
+  fixDateCollisions(playersDated);
+  playersDated.forEach(player => chrome.alarms.create(
     player.name, {when: alarmTime(player)}
     )
   );
 }
 
+// Alarm time is 1 minute left before deadline
 function alarmTime(player) {
-  let date = player.date;
-  date.setMinutes(date.getMinutes() - 1);
-  return date.getTime();
+  return player.date - 60000;
 }
 
 function handleAlarms(alarm) {
-  console.log("Alarm for "+ alarm.name);
+  console.log("Alarm for " + alarm.name);
   createNotification(alarm.name);
-  const sound = new Audio(browser.extension.getURL("alarms/mz-alarm.wav"));
+  const sound = new Audio(chrome.extension.getURL("alarms/mz-alarm.wav"));
   sound.play();
   players = players.filter(player => player.name !== alarm.name);
 }
 
 function createNotification(name) {
-  browser.notifications.create({
+  chrome.notifications.create({
     "type": "basic",
-    "iconUrl": browser.extension.getURL("icons/logo-48.png"),
+    "iconUrl": chrome.extension.getURL("icons/logo-48.png"),
     "title": "MZ Transfer Alarm",
-    "message": browser.i18n.getMessage("transferAlarmMessage", name)
+    "message": chrome.i18n.getMessage("transferAlarmMessage", name)
   });
 }
 
-browser.runtime.onMessage.addListener(handleMessages);
-browser.alarms.onAlarm.addListener(handleAlarms);
+chrome.runtime.onMessage.addListener(handleMessages);
+chrome.alarms.onAlarm.addListener(handleAlarms);

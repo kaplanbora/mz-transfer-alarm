@@ -1,10 +1,10 @@
 var players = [];
 
-document.querySelector("#set-alarms-label").innerText = browser.i18n.getMessage("setAlarmsLabel");
-document.querySelector("#clear-alarms-label").innerText = browser.i18n.getMessage("clearAlarmsLabel");
-document.querySelector("#remove-players-label").innerText = browser.i18n.getMessage("removePlayersLabel");
-document.querySelector("#players-label").innerText = browser.i18n.getMessage("players");
-document.querySelector("#select-all-label").innerText = browser.i18n.getMessage("selectAll");
+document.querySelector("#set-alarms-label").innerText = chrome.i18n.getMessage("setAlarmsLabel");
+document.querySelector("#clear-alarms-label").innerText = chrome.i18n.getMessage("clearAlarmsLabel");
+document.querySelector("#remove-players-label").innerText = chrome.i18n.getMessage("removePlayersLabel");
+document.querySelector("#players-label").innerText = chrome.i18n.getMessage("players");
+document.querySelector("#select-all-label").innerText = chrome.i18n.getMessage("selectAll");
 
 function selectPlayer(event) {
   let player = players.find(p => event.target.id === p.name);
@@ -19,48 +19,36 @@ function selectAll(event) {
 }
 
 function removePlayers(event) {
-  browser.runtime.sendMessage({
+  chrome.runtime.sendMessage({
     type: "clear-alarms",
     players: players.filter(player => player.checked)
   });
   players = players.filter(player => !player.checked);
   populate();
-  browser.runtime.sendMessage({
-    type: "persist-players",
-    players: players
-  });
 }
 
 function clearAlarms(event) {
-  let checkedPlayers = players.filter(player => player.checked);
-  checkedPlayers.forEach(player => {
-    player.alarm = false;
-    player.checked = false;
-  });
+  players.filter(player => player.checked)
+    .forEach(player => {
+      player.alarm = false;
+      player.checked = false;
+    });
   populate();
-  browser.runtime.sendMessage({
+  chrome.runtime.sendMessage({
     type: "clear-alarms",
-    players: checkedPlayers 
-  });
-  browser.runtime.sendMessage({
-    type: "persist-players",
     players: players
   });
 }
 
 function setAlarms(event) {
-  let checkedPlayers = players.filter(player => player.checked);
-  checkedPlayers.forEach(player => {
-    player.alarm = true;
-    player.checked = false;
-  });
+  players.filter(player => player.checked)
+    .forEach(player => {
+      player.alarm = true;
+      player.checked = false;
+    });
   populate();
-  browser.runtime.sendMessage({
+  chrome.runtime.sendMessage({
     type: "set-alarms",
-    players: checkedPlayers
-  });
-  browser.runtime.sendMessage({
-    type: "persist-players",
     players: players
   });
 }
@@ -69,7 +57,6 @@ function onMessage(message) {
   switch (message.type) {
     case "load-content":
       players = message.players;
-      alarms = message.alarms;
       populate();
       break;
   }
@@ -89,7 +76,7 @@ function showEmptyMessage(playersDiv) {
   pdiv.appendChild(link);
   link.href = "https://www.managerzone.com/?p=shortlist";
   link.classList.add("empty");
-  link.innerText = browser.i18n.getMessage("emptyPopupMessage");
+  link.innerText = chrome.i18n.getMessage("emptyPopupMessage");
   playersDiv.appendChild(pdiv);
 }
 
@@ -98,19 +85,23 @@ function beautifyDate(date) {
   let day = "";
   switch (date.getDay()) {
     case now.getDay():
-      day = browser.i18n.getMessage("today");
+      day = chrome.i18n.getMessage("today");
       break;
     case now.getDay() + 1:
-      day = browser.i18n.getMessage("oneDayLater");
+      day = chrome.i18n.getMessage("oneDayLater");
       break;
     case now.getDay() + 2:
-      day = browser.i18n.getMessage("twoDaysLater");
+      day = chrome.i18n.getMessage("twoDaysLater");
       break;
     case now.getDay() + 3:
-      day = browser.i18n.getMessage("threeDaysLater");
+      day = chrome.i18n.getMessage("threeDaysLater");
       break;
   }
   return `${day}, ${padZero(date.getHours())}:${padZero(date.getMinutes())}`;
+}
+
+function toDate(epoch) {
+  return new Date(epoch);
 }
 
 function createPlayerDiv(player) {
@@ -134,7 +125,7 @@ function createPlayerDiv(player) {
 
   pname.innerText = player.name;
   pname.classList.add("name");
-  pdeadline.innerText = beautifyDate(player.date);
+  pdeadline.innerText = beautifyDate(toDate(player.date));
   pdeadline.classList.add("date");
   info.classList.add("info");
   info.appendChild(pname);
@@ -155,23 +146,23 @@ function createPlayerDiv(player) {
 function populate() {
   const playersDiv = document.querySelector(".players");
   playersDiv.innerHTML = "";
-  
+
   if (players.length === 0) {
     showEmptyMessage(playersDiv);
     return;
   }
-  
+
   players.forEach(player => {
     let pdiv = createPlayerDiv(player);
     playersDiv.appendChild(pdiv);
   });
 }
 
-browser.runtime.sendMessage({
+chrome.runtime.sendMessage({
   type: "send-content",
 });
 
-browser.runtime.onMessage.addListener(onMessage);
+chrome.runtime.onMessage.addListener(onMessage);
 document.querySelector("#set-alarms-button").addEventListener("click", setAlarms);
 document.querySelector("#clear-alarms-button").addEventListener("click", clearAlarms);
 document.querySelector("#remove-players-button").addEventListener("click", removePlayers);
