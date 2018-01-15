@@ -59,7 +59,24 @@ function clearAlarms(players) {
   players.forEach(player => browser.alarms.clear(player.name));
 }
 
+function fixDateCollisions(players) {
+  for (let i = 0; i < players.length; i++) {
+    let date1 = players[i].date;
+    let addedSeconds = 1;
+    for (let j = 0; j < players.length; j++) {
+      let date2 = players[j].date;
+      if (players[i].name === players[j].name) {
+        continue;
+      } else if (date1.getHours() === date2.getHours() && date1.getMinutes() === date2.getMinutes()) {
+        date2.setSeconds(date2.getSeconds() + addedSeconds);
+        addedSeconds += 1;
+      }
+    }
+  }
+}
+
 function setAlarms(players) {
+  fixDateCollisions(players);
   players.forEach(player => browser.alarms.create(
     player.name, {when: alarmTime(player)}
     )
@@ -73,6 +90,7 @@ function alarmTime(player) {
 }
 
 function handleAlarms(alarm) {
+  console.log("Alarm for "+ alarm.name);
   createNotification(alarm.name);
   const sound = new Audio(browser.extension.getURL("alarms/mz-alarm.wav"));
   sound.play();
