@@ -154,12 +154,13 @@ function createPlayerDiv(player) {
 
 function populate() {
   const playersDiv = document.querySelector(".players");
+  playersDiv.innerHTML = "";
+  
   if (players.length === 0) {
     showEmptyMessage(playersDiv);
     return;
   }
-  playersDiv.innerHTML = "";
-
+  
   players.forEach(player => {
     let pdiv = createPlayerDiv(player);
     playersDiv.appendChild(pdiv);

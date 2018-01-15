@@ -42,7 +42,7 @@
     "description": "Oyuncu kaldır butonu yazısı."
   },
   "emptyPopupMessage": {
-    "message": "Oyuncuları almak için \"Transferler > Takip Listesi\" sayfasına git.",
+    "message": "Oyuncuları görmek için \"Transferler > Takip Listesi\" sayfasına git.",
     "description": "Boş liste bildirim yazısı."
   },
   "today": {

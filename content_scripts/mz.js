@@ -19,31 +19,29 @@ function toDate(textDate) {
 }
 
 function load() {
-  let names = Array.from(document.querySelectorAll(".player_name"));
-  let dates = Array.from(document.querySelectorAll(".bid_history_lite"));
-  console.dir(dates);
-
-  names = names.map(name => name.innerText);
-  dates = dates.map(date => date.children[1].children[1].innerText);
-  console.dir(dates);
-
   let players = [];
 
-  for (let i = 0; i < names.length; i++) {
-    let deadline = toDate(dates[i]);
-    if (deadline.getTime() >= Date.now()) {
-      players.push({
-        name: names[i],
-        date: deadline,
-        alarm: false,
-        checked: false
-      });
+  const container = Array.from(document.querySelector("#players_container").children);
+  console.log("Container: " + container);
+  container.forEach(player => {
+    console.log("Player: " + player);
+    let nameElement = player.querySelector(".player_name");
+    let dateElement = player.querySelector(".bid_history_lite");
+    if (dateElement) {
+      let deadline = toDate(dateElement.children[1].children[1].innerText);
+      if (deadline.getTime() >= Date.now()){
+        players.push({
+          name: nameElement.innerText,
+          date: deadline,
+          alarm: false,
+          checked: false
+        });
+      }
     }
-  }
+  });
 
   players.sort((a,b) => a.date - b.date);
   
-  console.dir(players);
   browser.runtime.sendMessage({
     type: "load-players",
     players: players
