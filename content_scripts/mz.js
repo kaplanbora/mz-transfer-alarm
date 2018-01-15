@@ -30,10 +30,11 @@ function load() {
   let players = [];
 
   for (let i = 0; i < names.length; i++) {
-    if (toDate(dates[i]).getTime() >= Date.now()) {
+    let deadline = toDate(dates[i]);
+    if (deadline.getTime() >= Date.now()) {
       players.push({
         name: names[i],
-        date: toDate(dates[i]),
+        date: deadline,
         alarm: false,
         checked: false
       });

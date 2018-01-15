@@ -19,6 +19,10 @@ function selectAll(event) {
 }
 
 function removePlayers(event) {
+  browser.runtime.sendMessage({
+    type: "clear-alarms",
+    players: players.filter(player => player.checked)
+  });
   players = players.filter(player => !player.checked);
   populate();
   browser.runtime.sendMessage({
@@ -130,7 +134,7 @@ function createPlayerDiv(player) {
 
   pname.innerText = player.name;
   pname.classList.add("name");
-  pdeadline.innerText = beautifyDate(player.date); // customize this
+  pdeadline.innerText = beautifyDate(player.date);
   pdeadline.classList.add("date");
   info.classList.add("info");
   info.appendChild(pname);

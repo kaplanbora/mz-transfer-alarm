@@ -78,14 +78,15 @@ h2 {
 
 .info {
     font-size: 14px;
-    margin-left: -90px;
+    margin-left: 28px;
+    width: 280px;
 }
 
 .info > span {
     display: block;
 }
 
-.tick, .alarm {
+.alarm {
     width: 60px;
 }
 
