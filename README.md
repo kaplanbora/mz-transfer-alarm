@@ -1,7 +1,11 @@
 # MZ Transfer Alarm
-Create alarms for transfer players on shortlist at managerzone.com. Currenly only works on [Firefox 57][link]. Chrome version will be added soon.
+Having played this game for long enough I'm sure you missed a lot of transfers because you forgot them after adding them to shortlist. After missing lots of transfers I finally decided to fix this problem by settings alarms for transfers. I created a browser extension which reads players from your shortlist and lists them in an order by their transfer deadline. From there you can set alarms by selecting players and using buttons at the bottom. Alarm and notification fires up 1 minute before transfer ends. 
 
 ![Interface example][screenshot]
+
+#### Get the extension
+- [For Firefox][firefox]  
+- [For Chrome][chrome]
 
 ## How to Use
 - Add players on transfer page to shortlist.
@@ -12,4 +16,5 @@ Create alarms for transfer players on shortlist at managerzone.com. Currenly onl
 - If you add new players to shortlist, just refresh shortlist page and click to icon again to load new players.
 
 [screenshot]: https://raw.githubusercontent.com/kaplanbora/mz-transfer-alarm/master/mz-popup.png
-[link]: https://addons.mozilla.org/en-US/firefox/addon/mz-transfer-alarm/
+[firefox]: https://addons.mozilla.org/en-US/firefox/addon/mz-transfer-alarm/
+[chrome]: https://chrome.google.com/webstore/detail/mz-transfer-alarm/hlegblaobddgnflficnfikpinpjecfnh
